@@ -30,8 +30,9 @@
       build:
         commands:
           - echo "Running scripts..."
-    				- docker pull vuls/go-exploitdb:latest
-          - for src in exploitdb inthewild githubrepos awesomepoc;
+          - docker pull vuls/go-exploitdb:latest
+          - |
+            for src in exploitdb inthewild githubrepos awesomepoc;
             do
               docker run --rm -v local_volume:/go-exploitdb vuls/go-exploitdb fetch $src
             done
@@ -41,7 +42,7 @@
           - docker run --name go-exploitdb -d -v local_volume:/go-exploitdb --entrypoint="tail" vuls/go-exploitdb "-f" "/dev/null"
           - docker cp go-exploitdb://go-exploitdb/go-exploitdb.sqlite3 .
           - docker stop go-exploitdb && docker rm go-exploitdb
-          - aws s3 cp ./go-exploitdb.sqlite3 s3://bucket-name
+          - aws s3 cp ./go-exploitdb.sqlite3 s3://${var.bucket_name}
     EOF
     }
  }
@@ -63,6 +64,12 @@
    }
  }
  
+  data "aws_iam_policy_document" "codebuild_cw_access" {
+   statement {
+     actions   = ["logs:CreateLogStream", "logs:PutLogEvents"]
+     resources = ["*"]
+   }
+ }
  resource "aws_iam_role" "codebuild" {
    name               = "codebuild_role"
    assume_role_policy = data.aws_iam_policy_document.codebuild.json
@@ -71,4 +78,9 @@
  resource "aws_iam_role_policy" "codebuild_s3_access" {
    role   = aws_iam_role.codebuild.id
    policy = data.aws_iam_policy_document.codebuild_s3_access.json
+ }
+
+  resource "aws_iam_role_policy" "codebuild_cw_access" {
+   role   = aws_iam_role.codebuild.id
+   policy = data.aws_iam_policy_document.codebuild_cw_access.json
  }
