@@ -36,4 +36,3 @@ terraform apply
   - https://chatgpt.com/share/e06aafe8-551b-42de-80dd-6cf3d49a0189
 - google cloud endpointでレート制限→429エラーになれば以降は料金発生しない。
 - billing alertでコンテナ停止　↑があればこれはとりあえず急ぎではない
-- github actionsでpush時にtestしてOKならマージする
