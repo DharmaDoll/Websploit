@@ -79,7 +79,7 @@ def test_select_exploits_by_keywords():
 
     keywords = ["url3"]
     result = select_exploits_by_keywords(conn, keywords)
-    assert result.empty
+    assert not result.empty
 
 # def test_url_availability():
 #     url =  "https://this-is-test-bucket-tf-my.s3.ap-northeast-1.amazonaws.com/go-exploitdb.sqlite3"
