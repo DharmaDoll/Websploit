@@ -29,9 +29,17 @@ jobs:
           source .venv/bin/activate
           rye run pytest
 
-      - name: Check test result
+      # - name: Check test result
+      #   if: failure()
+      #   run: exit 1  # テストが失敗した場合はジョブを失敗させます
+
+      - name: Revert push if tests fail
         if: failure()
-        run: exit 1  # テストが失敗した場合はジョブを失敗させます
+        run: |
+          git reset --hard HEAD~1
+          git push origin +HEAD --force
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # - name: Setup tmate session for debugging
       #   if: failure()
