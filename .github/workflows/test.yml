@@ -3,7 +3,7 @@ name: Run Tests
 on:
   push:
     branches:
-      - main
+      - "feature/*"
 
 jobs:
   test:
@@ -12,9 +12,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        with:
-          fetch-depth: 0  # 完全なリポジトリ履歴を取得
-
       
       - name: Set up Python 3.12
         uses: actions/setup-python@v2
@@ -32,29 +29,24 @@ jobs:
           source .venv/bin/activate
           rye run pytest
 
-      # - name: Check test result
+      - name: Check test result
+        if: failure()
+        run: exit 1  # テストが失敗した場合はジョブを失敗させます
+
+      # - name: Setup tmate session for debugging
       #   if: failure()
-      #   run: exit 1  # テストが失敗した場合はジョブを失敗させます
+      #   uses: mxschmitt/action-tmate@v3
+
+
+      # - name: Get previous commit SHA
+      #   id: prev-commit
+      #   run: echo "PREV_COMMIT=$(git rev-parse HEAD~1)" >> $GITHUB_ENV
 
       # - name: Revert push if tests fail
       #   if: failure()
       #   run: |
-      #     git reset --hard HEAD~1
+      #     git reset --hard ${{ env.PREV_COMMIT }}
       #     git push origin +HEAD --force
       #   env:
       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Get previous commit SHA
-        id: prev-commit
-        run: echo "PREV_COMMIT=$(git rev-parse HEAD~1)" >> $GITHUB_ENV
-
-      - name: Revert push if tests fail
-        if: failure()
-        run: |
-          git reset --hard ${{ env.PREV_COMMIT }}
-          git push origin +HEAD --force
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
-      # - name: Setup tmate session for debugging
-      #   if: failure()
-      #   uses: mxschmitt/action-tmate@v3
