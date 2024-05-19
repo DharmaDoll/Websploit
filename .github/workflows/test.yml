@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - "feature/*"
-      # - main
+      - main
     paths:
       - '**.py'  
 
@@ -34,22 +34,10 @@ jobs:
 
       - name: Check test result
         if: failure()
-        run: exit 1  # テストが失敗した場合はジョブを失敗させます
+        run: exit 1 
 
       # - name: Setup tmate session for debugging
       #   if: failure()
       #   uses: mxschmitt/action-tmate@v3
 
-
-      # - name: Get previous commit SHA
-      #   id: prev-commit
-      #   run: echo "PREV_COMMIT=$(git rev-parse HEAD~1)" >> $GITHUB_ENV
-
-      # - name: Revert push if tests fail
-      #   if: failure()
-      #   run: |
-      #     git reset --hard ${{ env.PREV_COMMIT }}
-      #     git push origin +HEAD --force
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
