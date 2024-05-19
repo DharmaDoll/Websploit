@@ -27,7 +27,7 @@ jobs:
           source $HOME/.rye/env
           rye sync
           source .venv/bin/activate
-          rye run pytest tests/test_app.py
+          rye run pytest
 
       - name: Check test result
         if: failure()
