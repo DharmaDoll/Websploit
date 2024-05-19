@@ -14,15 +14,15 @@
  
  #このポリシーを定義したいので残しておく
  data "aws_iam_policy_document" "allow_codebuild_lambda" {
-   #   statement {
-   #  sid    = "AllowCodeBuildToPutObject"
-   #  actions = ["s3:PutObject"]
-   #  resources = ["${aws_s3_bucket.bucket.arn}/*"]
-   #  principals {
-   #    type        = "AWS"
-   #    identifiers = [var.codebuild_role_arn]
-   #  }
-   #}
+  statement {
+    sid    = "AllowCodeBuildToPutObject"
+    actions = ["s3:PutObject"]
+    resources = ["${aws_s3_bucket.bucket.arn}/*"]
+    principals {
+      type        = "AWS"
+      identifiers = [var.codebuild_role_arn]
+    }
+   }
  
    statement {
      sid    = "All"

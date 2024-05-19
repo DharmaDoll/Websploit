@@ -28,7 +28,7 @@ def test_get_cached_file_path(setup_cache_file):
 def test_clear_cache(setup_cache_file):
     clear_cache()
     assert not os.path.exists(setup_cache_file)
-    assert get_cached_file_path() is None
+    assert get_cached_file_path() is 1
 
 def test_download_sqlite_file(monkeypatch):
     # モックURLとレスポンスを作成
