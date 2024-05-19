@@ -3,7 +3,10 @@ name: Run Tests
 on:
   push:
     branches:
-      - "feature/*"
+      - main
+      # - "feature/*"
+    paths:
+      - '**.py'  
 
 jobs:
   test:
