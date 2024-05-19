@@ -75,7 +75,7 @@ def test_select_exploits_by_keywords():
  
     keywords = ["Nonexistent", "Keyword"]
     result = select_exploits_by_keywords(conn, keywords)
-    assert not result.empty
+    assert result.empty
 
     keywords = ["url3"]
     result = select_exploits_by_keywords(conn, keywords)
