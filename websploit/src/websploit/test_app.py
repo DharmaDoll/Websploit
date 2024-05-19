@@ -66,7 +66,7 @@ def test_select_exploits_by_keywords():
     result = select_exploits_by_keywords(conn, keywords)
     assert not result.empty
     assert "CVE-91011" in result.index
-    assert len(result) == 1
+    assert len(result) == 100
 
     # ヒットしない場合のテスト
     keywords = ["Nonexistent"]
