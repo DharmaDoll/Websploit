@@ -2,7 +2,7 @@
 - searchsploit can install locally, but there are some problems like getting caught by AV.
 - Use vuls module, so I can search poc on github,inthewild too!
 
-## Check it out... https://localhost:8765
+### Check it out... https://websploit-pbkqosy7ya-uc.a.run.app/
 ![mmmm](img/websploit.svg)
 
 
@@ -44,3 +44,4 @@ terraform apply
   - https://chatgpt.com/share/e06aafe8-551b-42de-80dd-6cf3d49a0189
 - google cloud endpointでレート制限→429エラーになれば以降は料金発生しない。
 - billing alertでコンテナ停止　↑があればこれはとりあえず急ぎではない
+- Will add lastupdate, Total number of records.

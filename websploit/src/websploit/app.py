@@ -66,7 +66,7 @@ def select_exploits_by_keywords(conn, keywords):
 
 def main():
     st.set_page_config(layout="wide")
-    st.sidebar.title("Keyword Search")
+    st.sidebar.title("Websploit")
 
     # http://localhost:8501/?btn=true
     params = st.experimental_get_query_params()
