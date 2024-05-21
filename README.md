@@ -6,7 +6,15 @@
 ![mmmm](img/websploit.svg)
 
 
-## Running For Develop
+
+## Start with docker
+```sh
+cd websploit
+docker compose up -d
+#docker compose down
+```
+
+## Start locally to develop 
 ```sh
 cd websploit
 rye sync
