@@ -22,7 +22,7 @@ source ~/.zshrc
 ```
 
 ## Deploy websploit to Cloud Run
-When you push to GitHub, it automatically deploys to Cloud Run!
+When you push to GitHub, it automatically deploys to Cloud Run via Cloud Build!
 
 ## Deploy AWS environment by Terraform
 Ensure you have access to the target resources via AWSCLI beforehand.
@@ -31,8 +31,7 @@ terraform apply
 ```
 
 ## memo
-- python&cloud run→streamlitがwebsocketを使うのでlambdaは使えないから
- ‐ https://zenn.dev/ncdc/articles/71d49bced3b69d#%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E3%81%A7%E5%8B%95%E3%81%8B%E3%81%99
+- python&cloud run→streamlitがwebsocketを使うのでlambdaは使えないのでcloud runで
   - https://chatgpt.com/share/e06aafe8-551b-42de-80dd-6cf3d49a0189
 - google cloud endpointでレート制限→429エラーになれば以降は料金発生しない。
 - billing alertでコンテナ停止　↑があればこれはとりあえず急ぎではない
