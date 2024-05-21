@@ -11,6 +11,7 @@
 ```sh
 cd websploit
 docker compose up -d
+# Stop container
 #docker compose down
 ```
 
