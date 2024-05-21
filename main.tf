@@ -19,7 +19,6 @@
  module "s3" {
    source = "./modules/s3"
    codebuild_role_arn = module.codebuild.codebuild_role_arn
-   lambda_role_arn = module.lambda.lambda_role_arn  
  }
  
  module "codebuild" {
@@ -27,13 +26,7 @@
    bucket_arn  = module.s3.bucket_arn
    bucket_name = module.s3.bucket_name
  }
- 
- module "lambda" {
-   source = "./modules/lambda"
-   bucket_arn  = module.s3.bucket_arn
-   bucket_name = module.s3.bucket_name
- }
- 
+  
  module "eventbridge" {
    source = "./modules/eventbridge"
    codebuild_arn = module.codebuild.codebuild_arn

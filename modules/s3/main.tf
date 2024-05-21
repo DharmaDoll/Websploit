@@ -12,7 +12,7 @@
    policy = data.aws_iam_policy_document.allow_codebuild_lambda.json
  }
  
- #このポリシーを定義したいので残しておく
+ # CodeBuildからのみ書き込み可能
  data "aws_iam_policy_document" "allow_codebuild_lambda" {
   statement {
     sid    = "AllowCodeBuildToPutObject"
@@ -33,15 +33,6 @@
        identifiers = ["*"]
      }
    }
-   #statement {
-   #  sid    = "AllowLambdaToGetObject"
-   #  actions = ["s3:GetObject"]
-   #  resources = ["${aws_s3_bucket.bucket.arn}/*"]
-    #  principals {
-    #   type        = "AWS"
-    #   identifiers = [var.lambda_role_arn]
-    # }
-    #}
  }
 
 
